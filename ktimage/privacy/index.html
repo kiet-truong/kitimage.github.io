@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — KTIMAGE</title>
+  <meta name="description" content="Privacy Policy for the KTIMAGE Android app.">
+
+  <link rel="icon" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../app-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --sky: #87CEFA;
+      --purple: #7986CB;
+      --pink: #cb79bc;
+      --link: #2e78b7;
+      --ink: #171A2B;
+      --muted: #616780;
+      --line: #E5E8F3;
+      --soft: #F4F6FC;
+    }
+
+    * {
+      font-family: "Roboto", sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- nav ---------- */
+    nav.top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 13px 24px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .nav-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      display: block;
+      flex: none;
+      box-shadow: 0 1px 4px rgba(30, 36, 74, .16);
+    }
+
+    .nav-name {
+      font-weight: 700;
+      letter-spacing: .13em;
+      font-size: .8rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .88rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: #fff !important;
+      padding: 8px 17px;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: .84rem !important;
+    }
+
+    /* ---------- page ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse 60% 90% at 20% -20%, rgba(135, 206, 250, .24), transparent 70%),
+        radial-gradient(ellipse 45% 80% at 92% 0%, rgba(203, 121, 188, .14), transparent 70%);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3.4em 1.5em 2.6em;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.6em 1.5em 4em;
+    }
+
+    h1 {
+      font-size: clamp(1.85em, 4vw, 2.3em);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      margin: 0 0 .25em;
+    }
+
+    .updated {
+      color: var(--muted);
+      font-size: .9em;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      margin: 2.4em 0 .6em;
+      padding-top: 1.4em;
+      border-top: 1px solid var(--line);
+    }
+
+    /* The hero already draws a rule above it. */
+    .wrap h2:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    h3 {
+      font-size: 1em;
+      font-weight: 500;
+      margin: 1.8em 0 .4em;
+    }
+
+    p,
+    li {
+      font-weight: 300;
+      font-size: 1em;
+      color: #3B4055;
+    }
+
+    ul {
+      padding-left: 1.25em;
+    }
+
+    li {
+      margin-bottom: .5em;
+    }
+
+    li::marker {
+      color: var(--purple);
+    }
+
+    a {
+      color: var(--link);
+    }
+
+    strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .88em;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 1px 5px;
+    }
+
+    .callout {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--purple);
+      padding: 1.1em 1.4em;
+      margin: 1.8em 0 0;
+      border-radius: 12px;
+    }
+
+    .callout p {
+      margin: 0;
+    }
+
+    footer {
+      margin-top: 3.4em;
+      padding-top: 1.5em;
+      border-top: 1px solid var(--line);
+      color: #8A90A6;
+      font-size: .86em;
+      font-weight: 300;
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="top">
+    <div class="nav-inner">
+      <img class="nav-mark" src="../../app-icon.png" alt="KTIMAGE app icon">
+      <a class="nav-name" href="../../index.html">KTIMAGE</a>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="mailto:kiettruong208@gmail.com">Contact</a>
+        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.mankiet208.ktimage">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: 5 September 2026</p>
+
+      <p>
+        This Privacy Policy explains how the <strong>KTIMAGE</strong> Android application
+        (package <strong>com.mankiet208.ktimage</strong>, the &ldquo;App&rdquo;) handles your
+        information. KTIMAGE is an image compressor and resizer developed and published by
+        Kiet Truong (&ldquo;we&rdquo;, &ldquo;us&rdquo;).
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>In short:</strong> your photos never leave your device. All compressing and
+          resizing happens locally on your phone. We do not operate a server, we do not have
+          accounts, and we cannot see your images. The only third party that receives any data
+          is Google AdMob, which serves the ads that fund the App.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <h2>1. Your photos and media</h2>
+
+    <p>
+      When you choose photos to compress, the App reads them from your device&rsquo;s media
+      library. If you use the in-app camera option, the App receives the photo you capture.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Processing is entirely on-device.</strong> Images are decoded, compressed and
+        re-encoded by your phone. They are never uploaded, transmitted, or backed up to us or
+        to anyone else.
+      </li>
+      <li>
+        <strong>Results are saved to your own device</strong>, into an album named
+        <em>ktimage</em> in your media library.
+      </li>
+      <li>
+        <strong>We never see, store, or share your images</strong>, because we have no server
+        for them to be sent to.
+      </li>
+      <li>
+        If you ask the App to remove the original photos after a run, it hands that request to
+        Android, which moves them to your system Trash / Recently Deleted where supported. On
+        devices running Android 10 or older, that removal is permanent. The App only acts after
+        you confirm the system dialog.
+      </li>
+    </ul>
+
+    <h3>Location data inside photos</h3>
+
+    <p>
+      The App requests the <strong>ACCESS_MEDIA_LOCATION</strong> permission. This does
+      <em>not</em> track your location. It allows the App to read the GPS coordinates that your
+      camera may have embedded in a photo&rsquo;s EXIF metadata, so that this information can be
+      handled correctly while the image is processed on your device. This metadata is never
+      transmitted to us or to any third party.
+    </p>
+
+    <h3>Permissions the App uses</h3>
+
+    <ul>
+      <li><strong>Photos and media</strong> (<code>READ_MEDIA_IMAGES</code>) &mdash; to let you
+        select images and to save the compressed results.</li>
+      <li><strong>Media location</strong> (<code>ACCESS_MEDIA_LOCATION</code>) &mdash; to read
+        image metadata during on-device processing, as described above.</li>
+      <li><strong>Camera</strong> &mdash; only if you choose to take a new photo from within the
+        App.</li>
+    </ul>
+
+    <p>
+      You can grant or revoke any of these at any time in your device settings. Revoking photo
+      access will prevent the App from performing its core function.
+    </p>
+
+    <h2>2. Information stored on your device</h2>
+
+    <p>
+      The App saves a small amount of data in its own private storage on your phone. This never
+      leaves your device and is deleted when you uninstall the App:
+    </p>
+
+    <ul>
+      <li>Your chosen language (English or Vietnamese).</li>
+      <li>Your chosen appearance (light or dark theme).</li>
+      <li>A counter used to space out how often a full-screen ad is shown.</li>
+    </ul>
+
+    <h2>3. Advertising</h2>
+
+    <p>
+      KTIMAGE is free and is supported by advertising delivered through
+      <strong>Google AdMob</strong>, a service provided by Google LLC. To serve ads, the Google
+      Mobile Ads SDK included in the App may collect and process:
+    </p>
+
+    <ul>
+      <li>Your <strong>Advertising ID</strong> (a resettable identifier provided by Android).</li>
+      <li>Device information such as model, operating system version, and language.</li>
+      <li>Your <strong>approximate location</strong>, derived from your IP address (typically
+        country or city level &mdash; not precise GPS location).</li>
+      <li>Interaction data about the ads shown, such as impressions and clicks.</li>
+    </ul>
+
+    <p>
+      This data is collected by Google, not by us. We receive only aggregate, anonymous
+      performance reports (for example, total impressions and revenue) and cannot identify any
+      individual user from them.
+    </p>
+
+    <p>
+      For details on how Google uses this information, see
+      <a href="https://policies.google.com/technologies/partner-sites" target="_blank"
+        rel="noopener">How Google uses information from sites or apps that use our services</a>
+      and the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google
+        Privacy Policy</a>.
+    </p>
+
+    <h3>Your choices about ads</h3>
+
+    <ul>
+      <li>
+        <strong>If you are in the European Economic Area, the United Kingdom, or Switzerland</strong>,
+        the App shows a consent form the first time it runs, provided by Google&rsquo;s User
+        Messaging Platform. You may choose whether to allow personalised ads. If you decline,
+        ads are still shown but are non-personalised. You can change your choice at any time
+        from within the App.
+      </li>
+      <li>
+        <strong>On any device</strong>, you can reset or delete your Advertising ID in
+        <em>Settings &rarr; Google &rarr; Ads</em>. Deleting it stops personalised advertising
+        across all apps on your phone.
+      </li>
+    </ul>
+
+    <h2>4. What we do not do</h2>
+
+    <p>To be explicit, KTIMAGE does <strong>not</strong>:</p>
+
+    <ul>
+      <li>Upload, transmit, or store your photos anywhere outside your device.</li>
+      <li>Require an account, a sign-in, an email address, or a name.</li>
+      <li>Include analytics or crash-reporting services.</li>
+      <li>Sell or share personal information with data brokers.</li>
+      <li>Track you across other apps or websites for our own purposes.</li>
+    </ul>
+
+    <h2>5. Legal bases for processing (EEA / UK)</h2>
+
+    <p>
+      Where the GDPR or UK GDPR applies, we rely on the following legal bases:
+    </p>
+
+    <ul>
+      <li><strong>Consent</strong> &mdash; for personalised advertising, obtained through the
+        consent form described in section 3, and for access to your photos and camera, obtained
+        through the Android permission prompts.</li>
+      <li><strong>Legitimate interests</strong> &mdash; for serving non-personalised ads and for
+        the basic, fraud-prevention and frequency-capping functions necessary to deliver
+        advertising at all.</li>
+    </ul>
+
+    <h2>6. Data retention</h2>
+
+    <p>
+      We do not retain any personal data, because we do not collect any. Preferences stored on
+      your device remain until you clear the App&rsquo;s data or uninstall it. Data collected by
+      Google through AdMob is retained according to Google&rsquo;s own retention policies, linked
+      in section 3.
+    </p>
+
+    <h2>7. Your rights</h2>
+
+    <p>
+      Depending on where you live, you may have the right to access, correct, delete, or port
+      your personal data, to object to or restrict its processing, and to withdraw consent.
+      Because we hold no personal data about you, these rights are exercised most directly by:
+    </p>
+
+    <ul>
+      <li>Changing your advertising consent in the App, or resetting your Advertising ID in your
+        device settings.</li>
+      <li>Revoking the App&rsquo;s permissions in your device settings.</li>
+      <li>Uninstalling the App, which removes everything it has stored.</li>
+      <li>Contacting Google directly regarding data collected through AdMob.</li>
+    </ul>
+
+    <p>
+      If you are in the EEA or UK, you also have the right to lodge a complaint with your local
+      data protection authority.
+    </p>
+
+    <h2>8. Children&rsquo;s privacy</h2>
+
+    <p>
+      KTIMAGE is not directed to children under 13, and we do not knowingly collect personal
+      information from them. If you believe a child has provided us with personal information,
+      please contact us and we will act on it.
+    </p>
+
+    <h2>9. Changes to this policy</h2>
+
+    <p>
+      We may update this Privacy Policy from time to time. The revised version will be posted at
+      this address with a new &ldquo;Last updated&rdquo; date. Material changes will also be noted
+      in the App&rsquo;s release notes. Continuing to use the App after an update means you accept
+      the revised policy.
+    </p>
+
+    <h2>10. Contact</h2>
+
+    <p>
+      If you have any questions about this Privacy Policy, contact us at
+      <a href="mailto:kiettruong208@gmail.com">kiettruong208@gmail.com</a>.
+    </p>
+
+    <footer>
+      KTIMAGE &mdash; com.mankiet208.ktimage &middot; Last updated 5 September 2026
+    </footer>
+  </div>
+</body>
+
+</html>

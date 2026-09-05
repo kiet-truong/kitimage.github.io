@@ -1,81 +1,747 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-  <title>KTIMAGE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KTIMAGE — Shrink photos, keep the quality</title>
+  <meta name="description"
+    content="KTIMAGE compresses and resizes photos on your Android device. Hit an exact file size, or dial in quality yourself. Nothing ever leaves your phone.">
+
+  <link rel="icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="app-icon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --sky: #87CEFA;
+      --purple: #7986CB;
+      --purple-bright: #8B9BE8;
+      --deep: #2E3557;
+      --pink: #cb79bc;
+      --green: #2E9E4F;
+      --ink: #171A2B;
+      --muted: #616780;
+      --line: #E5E8F3;
+      --soft: #F4F6FC;
+    }
+
     * {
+      box-sizing: border-box;
       font-family: "Roboto", sans-serif;
     }
 
-    .get-mobile-app-section {
-      /* padding: 4em 2em; */
-      padding: 15% 10%;
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
 
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- nav ---------- */
+    nav.top {
+      flex: none;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .9);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+
+    .nav-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      display: block;
+      flex: none;
+      box-shadow: 0 1px 4px rgba(30, 36, 74, .16);
+    }
+
+    .nav-name {
+      font-weight: 700;
+      letter-spacing: .13em;
+      font-size: .8rem;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .88rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: #fff !important;
+      padding: 8px 17px;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: .84rem !important;
+    }
+
+    /* ---------- stage ---------- */
+    main {
+      flex: 1 1 auto;
+      min-height: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 65% at 18% -10%, rgba(135, 206, 250, .26), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 88% 105%, rgba(203, 121, 188, .16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .stage {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 48px;
+      align-items: center;
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 15px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(38, 44, 84, .05);
+    }
+
+    .pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34C759;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(1.9rem, 3.6vw + .4rem, 3.15rem);
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+
+    h1 .accent {
+      background: linear-gradient(120deg, var(--sky), var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .sub {
+      margin: 0 0 22px;
+      max-width: 470px;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 1.02rem;
+      line-height: 1.62;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .cta-row img {
+      width: 190px;
+      display: block;
+    }
+
+    .free-note {
+      margin: 0;
+      color: #8A90A6;
+      font-size: .82rem;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ---------- feature row ---------- */
+    .feats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 22px;
+      max-width: 520px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .feat {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+
+    .ico {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      flex: none;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .ico svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ico.i1 svg {
+      stroke: var(--purple);
+    }
+
+    .ico.i2 svg {
+      stroke: var(--purple-bright);
+    }
+
+    .ico.i3 svg {
+      stroke: var(--pink);
+    }
+
+    .ico.i4 svg {
+      stroke: var(--green);
+    }
+
+    .feat h3 {
+      margin: 1px 0 3px;
+      font-size: .92rem;
+      font-weight: 500;
+    }
+
+    .feat p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: .81rem;
+      line-height: 1.5;
+    }
+
+    /* ---------- phone ---------- */
+    .phone-col {
+      display: grid;
+      place-items: center;
+      min-height: 0;
+    }
+
+    .phone {
+      width: clamp(210px, 20vw, 250px);
+      border-radius: 30px;
+      background: #0E0E10;
+      border: 8px solid #1C1C22;
+      box-shadow: 0 30px 70px rgba(30, 36, 74, .26);
+      overflow: hidden;
+      flex: none;
+    }
+
+    .screen {
+      background: #FAFBFF;
+      height: min(66vh, 500px);
+      padding: 16px 13px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .s-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: .58rem;
+      color: #9AA0B5;
+      margin-bottom: 12px;
+    }
+
+    .s-head {
+      font-size: .93rem;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .s-note {
+      font-size: .67rem;
+      color: #9AA0B5;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .s-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    .s-tile {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .s-tile.sel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 2px solid #fff;
+      border-radius: 6px;
+      box-shadow: 0 0 0 2px var(--purple);
+    }
+
+    .g1 {
+      background: linear-gradient(135deg, #87CEFA, #7986CB);
+    }
+
+    .g2 {
+      background: linear-gradient(135deg, #cb79bc, #8B9BE8);
+    }
+
+    .g3 {
+      background: linear-gradient(135deg, #4ADE80, #2E9E4F);
+    }
+
+    .g4 {
+      background: linear-gradient(135deg, #8B9BE8, #2E3557);
+    }
+
+    .g5 {
+      background: linear-gradient(135deg, #FFB86C, #cb79bc);
+    }
+
+    .g6 {
+      background: linear-gradient(135deg, #5AB6E8, #7986CB);
+    }
+
+    .g7 {
+      background: linear-gradient(135deg, #F6A6C1, #cb79bc);
+    }
+
+    .g8 {
+      background: linear-gradient(135deg, #A5D8FF, #5AB6E8);
+    }
+
+    .g9 {
+      background: linear-gradient(135deg, #B9E6C8, #4ADE80);
+    }
+
+    .s-sheet {
+      margin-top: auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px 14px;
+      box-shadow: 0 -6px 20px rgba(30, 36, 74, .07);
+    }
+
+    .s-grab {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: #D9DDEA;
+      margin: 0 auto 12px;
+    }
+
+    .s-est {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 11px;
+    }
+
+    .s-est .from {
+      font-size: .72rem;
+      color: #9AA0B5;
+      font-weight: 300;
+    }
+
+    .s-est .to {
+      font-size: .92rem;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .s-seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--soft);
+      border-radius: 9px;
+      padding: 3px;
+      margin-bottom: 12px;
+    }
+
+    .s-seg span {
+      text-align: center;
+      font-size: .68rem;
+      padding: 5px;
+      border-radius: 7px;
+      color: var(--muted);
+    }
+
+    .s-seg span.on {
+      background: #fff;
+      color: var(--ink);
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(30, 36, 74, .12);
+    }
+
+    .s-track {
+      height: 5px;
+      border-radius: 3px;
+      background: #E6E9F4;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .s-fill {
+      position: absolute;
+      inset: 0 58% 0 0;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--sky), var(--purple));
+    }
+
+    .s-thumb {
+      position: absolute;
+      left: 42%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 5px rgba(30, 36, 74, .3);
+      border: 1px solid var(--line);
+    }
+
+    .s-minmax {
+      display: flex;
+      justify-content: space-between;
+      font-size: .62rem;
+      color: #A8AEC2;
+      margin-bottom: 13px;
+    }
+
+    .s-btn {
+      background: linear-gradient(135deg, var(--sky), var(--purple));
+      color: #fff;
+      border-radius: 10px;
+      text-align: center;
+      padding: 10px;
+      font-weight: 500;
+      font-size: .82rem;
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      flex: none;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .foot {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      gap: 8px 24px;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
-      background-color: #212121;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
 
-    .content {
-      text-align: left;
-    }
-
-    .app-icon {
-      margin: 0 0 1em;
-      max-height: 200px;
-    }
-
-    .app-text-1 {
-      font-size: 1.5em;
+    .foot small {
+      color: #8A90A6;
+      font-size: .8rem;
       font-weight: 300;
-      font-style: normal;
-      color: #FFF;
     }
 
-    .app-text-2 {
-      font-size: 2em;
-      font-weight: 500;
-      font-style: normal;
-      color: #FFF;
+    .foot nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .83rem;
+      margin-left: 20px;
     }
 
-    .store-badge-wrapper {
-      vertical-align: middle;
+    .foot nav a:hover {
+      color: var(--ink);
+    }
+
+    /* ---------- fit tweaks for short viewports ---------- */
+    @media (max-height: 760px) {
+      .pill {
+        margin-bottom: 13px;
+      }
+
+      .sub {
+        margin-bottom: 16px;
+        font-size: .95rem;
+      }
+
+      .cta-row {
+        margin-bottom: 18px;
+      }
+
+      .feats {
+        padding-top: 16px;
+        gap: 11px 20px;
+      }
+    }
+
+    @media (max-height: 640px) {
+      .feats {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+
+      html,
+      body {
+        height: auto;
+        overflow: auto;
+      }
+
+      main {
+        display: block;
+      }
+
+      .stage {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      .sub {
+        max-width: none;
+      }
+
+      .feats {
+        max-width: none;
+        display: grid;
+      }
+
+      .phone {
+        width: 250px;
+      }
+
+      .screen {
+        height: 470px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .feats {
+        grid-template-columns: 1fr;
+      }
+
+      .foot {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .foot nav a {
+        margin: 0 10px;
+      }
     }
   </style>
 </head>
 
-<body style="background-color: #212121;"">
-  <div class=" get-mobile-app-section" style="margin: auto">
+<body>
 
-  <img class="app-icon" src="./no_bg_app_icon.png" alt="Get mobile app">
-
-  <div class="content">
-    <h3 class="app-text-1">A nice tool for resize and edit images</h3>
-
-    <h1 class="app-text-2">Download it now!</h1>
-
-    <div class="store-badge-wrapper">
-      <a class="app-gplay-image-link"
-        href="https://play.google.com/store/apps/details?id=com.ktimage&pcampaignid=web_share"><img
-          alt="Get it on Google Play"
-          src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-          style="width: 220px;height: 85px;">
-      </a>
+  <nav class="top">
+    <div class="wrap nav-inner">
+      <img class="nav-mark" src="app-icon.png" alt="KTIMAGE app icon">
+      <span class="nav-name">KTIMAGE</span>
+      <div class="nav-links">
+        <a href="ktimage/privacy/index.html">Privacy</a>
+        <a href="mailto:kiettruong208@gmail.com">Contact</a>
+        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.mankiet208.ktimage">Get the app</a>
+      </div>
     </div>
-  </div>
-  </div>
+  </nav>
+
+  <main>
+    <div class="wrap stage">
+      <div>
+        <span class="pill"><span class="dot"></span> Free on Google Play</span>
+        <h1>Photo compression,<br><span class="accent">finally made simple</span></h1>
+        <p class="sub">
+          Pick a file size and you're done. Or open the controls and adjust quality and format exactly how you like.
+        </p>
+
+        <div class="cta-row">
+          <a href="https://play.google.com/store/apps/details?id=com.mankiet208.ktimage">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+              alt="Get it on Google Play">
+          </a>
+          <p class="free-note">Android 7.0 and up<br>No account required</p>
+        </div>
+
+        <div class="feats">
+          <div class="feat">
+            <div class="ico i1">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="4" />
+                <line x1="12" y1="3" x2="12" y2="6" />
+                <line x1="12" y1="18" x2="12" y2="21" />
+              </svg>
+            </div>
+            <div>
+              <h3>Target file size</h3>
+              <p>Name a size. KTIMAGE finds the quality and dimensions that fit it.</p>
+            </div>
+          </div>
+
+          <div class="feat">
+            <div class="ico i2">
+              <svg viewBox="0 0 24 24">
+                <line x1="4" y1="8" x2="20" y2="8" />
+                <circle cx="14" cy="8" r="2.6" />
+                <line x1="4" y1="16" x2="20" y2="16" />
+                <circle cx="9" cy="16" r="2.6" />
+              </svg>
+            </div>
+            <div>
+              <h3>Manual mode</h3>
+              <p>Set quality and scale yourself, with a live estimate before you commit.</p>
+            </div>
+          </div>
+
+          <div class="feat">
+            <div class="ico i3">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                <rect x="14" y="14" width="7" height="7" rx="1.5" />
+              </svg>
+            </div>
+            <div>
+              <h3>Do it all at once</h3>
+              <p>Compress a whole batch in one go. Results are saved to their own <em>ktimage</em> album.</p>
+            </div>
+          </div>
+
+          <div class="feat">
+            <div class="ico i4">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="10" width="16" height="11" rx="2" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+              </svg>
+            </div>
+            <div>
+              <h3>Private by design</h3>
+              <p>No account, no upload, no server. Nothing leaves your device.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-col">
+        <div class="phone">
+          <div class="screen">
+            <div class="s-bar"><span>9:41</span><span>▮▮▮</span></div>
+            <div class="s-head">Compress</div>
+            <div class="s-note">6 photos selected · 8.4 MB</div>
+            <div class="s-grid">
+              <div class="s-tile g1 sel"></div>
+              <div class="s-tile g2 sel"></div>
+              <div class="s-tile g3 sel"></div>
+              <div class="s-tile g4 sel"></div>
+              <div class="s-tile g5 sel"></div>
+              <div class="s-tile g6 sel"></div>
+              <div class="s-tile g7"></div>
+              <div class="s-tile g8"></div>
+              <div class="s-tile g9"></div>
+            </div>
+            <div class="s-sheet">
+              <div class="s-grab"></div>
+              <div class="s-est">
+                <span class="from">8.4 MB →</span>
+                <span class="to">~3.0 MB</span>
+              </div>
+              <div class="s-seg"><span class="on">Target size</span><span>Quality</span></div>
+              <div class="s-track">
+                <div class="s-fill"></div>
+                <div class="s-thumb"></div>
+              </div>
+              <div class="s-minmax"><span>100 KB</span><span>3.0 MB</span></div>
+              <div class="s-btn">Compress 6 photos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <small>© 2026 Kiet Truong · com.mankiet208.ktimage</small>
+      <nav>
+        <a href="ktimage/privacy/index.html">Privacy Policy</a>
+        <a href="mailto:kiettruong208@gmail.com">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
 </body>
 
 </html>
